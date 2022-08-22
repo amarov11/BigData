@@ -1,3 +1,1 @@
-(device.type = 'winevent_nic' && device.class = 'Windows Hosts') 
-&& (event.source = 'powershell' && reference.id = '800' && (param contains 'get-process' || param contains "Get-WmiObject -class Win32_process")) 
-|| (reference.id = '4688' && process contains 'tasklist.exe' && process.src contains 'cmd.exe') ||(reference.id contains '4688' && process contains 'Taskmgr.exe' && process.src contains 'explorer.exe' ))
+(device.type = 'winevent_nic' AND device.class = 'Windows Hosts' AND (reference.id = '4688' AND (process contains 'tasklist.exe' AND process.src contains 'cmd.exe') OR process contains 'Taskmgr.exe' AND process.src contains 'explorer.exe') OR param contains 'process get /format:list' OR event.source contains 'powershell' AND reference.id = '800' AND (param contains 'get-process' OR param contains 'Get-WmiObject -class Win32_process')) AND device.host != 'SGA-ASPM071.sga-dz.com'
