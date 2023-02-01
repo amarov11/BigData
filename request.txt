@@ -1,6 +1,6 @@
 (device.type = 'winevent_nic' AND device.class = 'Windows Hosts' AND (reference.id = '4688' AND (process contains 'tasklist.exe' AND process.src contains 'cmd.exe') OR process contains 'Taskmgr.exe' AND process.src contains 'explorer.exe') OR param contains 'process get /format:list' OR event.source contains 'powershell' AND reference.id = '800' AND (param contains 'get-process' OR param contains 'Get-WmiObject -class Win32_process')) AND device.host != 'SGA-ASPM071.sga-dz.com'
 
-
+^(?:(?!DZ[0-9]{7}[L,D,T]$).*)
 \b(?!^DZ\d{7}[L,D]$)\w+
 ^(?:(?!SGA-[a-z]{2,5}[0-9]{2,5}$).*)
 ^\/var\/tmp\/.+|^\/tmp\/var\/.+
