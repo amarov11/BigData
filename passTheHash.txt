@@ -71,3 +71,4 @@ System
   VirtualAccount %%1843 
   TargetLinkedLogonId 0x0 
   ElevatedToken %%1842 
+https://teams.microsoft.com/l/meetup-join/19%3ameeting_NDMyYTQwNDctY2EzNC00ODAzLTlmNmYtYjA0N2M3MzE1YzRl%40thread.v2/0?context=%7b%22Tid%22%3a%22be2daa71-5e95-4e09-a48c-8665ad1c339d%22%2c%22Oid%22%3a%22656b1548-a567-4ff2-9003-d8c117414416%22%7d
