@@ -10,3 +10,8 @@ index=windows source="XmlWinEventLog:System" AND (EventCode=7040 service="Print 
 | eval severity="medium" 
 | rename dvc_nt_host AS dvc 
 | table dvc,UserID,service,severity,param2
+
+
+index="windows" AND EventCode=4688 AND parent_process="*PSEXE*"
+| eval severity="medium" 
+| table src_user dvc_nt_host parent_process Process_Command_Line severity
