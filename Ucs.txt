@@ -15,3 +15,10 @@ index=windows source="XmlWinEventLog:System" AND (EventCode=7040 service="Print 
 index="windows" AND EventCode=4688 AND parent_process="*PSEXE*"
 | eval severity="medium" 
 | table src_user dvc_nt_host parent_process Process_Command_Line severity
+
+
+index="windows" AND EventCode=4688 AND parent_process="*PSEXE*" AND dvc_nt_host IN ("SGA-DCPM001","SGA-DCPM002","SGA-DCPM003")
+| eval severity="medium" 
+| rename TargetUserName as src_user
+| rename dvc_nt_host as dvc
+| table src_user dvc parent_process Process_Command_Line severity
