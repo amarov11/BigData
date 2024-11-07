@@ -3,3 +3,10 @@ index=windows source="XmlWinEventLog:System" AND
 (EventCode=7036 AND param2=running AND service="Print Spooler") 
 | eval severity="medium"
 |table dvc_nt_host,UserID,service,severity,param2
+
+
+index=windows source="XmlWinEventLog:System" AND (EventCode=7040 service="Print Spooler" param2="auto start") OR  
+(EventCode=7036 AND param2=running AND service="Print Spooler") dvc_nt_host IN ("SGA-DCPM001","SGA-DCPM002")
+| eval severity="medium" 
+| rename dvc_nt_host AS dvc 
+| table dvc,UserID,service,severity,param2
