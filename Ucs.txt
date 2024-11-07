@@ -22,3 +22,9 @@ index="windows" AND EventCode=4688 AND parent_process="*PSEXE*" AND dvc_nt_host 
 | rename TargetUserName as src_user
 | rename dvc_nt_host as dvc
 | table src_user dvc parent_process Process_Command_Line severity
+
+
+index=windows EventCode=4688 AND process_name="setspn.exe"
+| eval severity="medium"
+| rename dvc_nt_host as dvc, SubjectUserName as user
+| table dvc user severity process_name
