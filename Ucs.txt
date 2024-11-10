@@ -36,4 +36,10 @@ index=windows AND EventCode=4657 ObjectValueName=DisablePasswordChange NewValue=
 | table dvc user ObjectValueName NewValue
 
 
-Get-ADObject -Filter {Name -eq "AdminSDHolder"} -Properties ObjectGUID
+index=windows AND source="XmlWinEventLog:Security"AND EventCode=4662  dvc_nt_host IN ("WIN-SATJ7KSGAVM","machine")   ObjectName="%{e9748722-25dd-41df-bcbe-6d713d7e7843}" 
+| eval severity="medium" 
+| eval Object_Name=case
+( like(ObjectName, "%{e9748722-25dd-41df-bcbe-6d713d7e7843}"), "AdminSDHolder")
+| rename dvc_nt_host AS dvc, TargetUserName AS user
+| table dvc src_user Object_Name
+
