@@ -34,3 +34,6 @@ index=windows AND EventCode=4657 ObjectValueName=DisablePasswordChange NewValue=
 | eval severity="medium" 
 | rename SubjectUserName AS user, dvc_nt_host AS dvc
 | table dvc user ObjectValueName NewValue
+
+
+Get-ADObject -Filter {Name -eq "AdminSDHolder"} -Properties ObjectGUID
