@@ -43,3 +43,9 @@ index=windows AND source="XmlWinEventLog:Security"AND EventCode=4662  dvc_nt_hos
 | rename dvc_nt_host AS dvc, TargetUserName AS user
 | table dvc src_user Object_Name
 
+
+
+index=windows AND source="XmlWinEventLog:Security" AND EventCode=5136 AND AttributeLDAPDisplayName=dSHeuristics dvc_nt_host IN ("WIN-SATJ7KSGAVM","XX")
+|eval severity="medium"
+| rename dvc_nt_host AS dvc, src_user AS user
+| table dvc user AttributeLDAPDisplayName
