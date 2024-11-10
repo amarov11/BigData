@@ -49,3 +49,11 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode=5136 AND Attrib
 |eval severity="medium"
 | rename dvc_nt_host AS dvc, src_user AS user
 | table dvc user AttributeLDAPDisplayName
+
+
+
+
+index=windows AND source="XmlWinEventLog:Security" AND EventCode=  4719 AND dvc_nt_host IN ("WIN-SATJ7KSGAVM","XX")
+|eval severity="Medium"
+| rename dvc_nt_host AS dvc, src_user AS user
+| table dvc user, severity
