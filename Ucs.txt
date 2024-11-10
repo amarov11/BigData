@@ -65,3 +65,6 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode= 4657 AND (Obje
 | eval severity = High
 | rename dvc_nt_host AS dvc,SubjectUserName AS user 
 | table dvc user ObjectValueName NewValue severity
+
+
+The Boot or Logon Autostart Execution technique involves modifying registry keys to automatically run programs at system boot or user logon, ensuring persistence for malicious software
