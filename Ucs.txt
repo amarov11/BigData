@@ -72,3 +72,5 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode= 4663 AND file_
 | eval severity = High
 | rename dvc_nt_host AS dvc, src_user AS user
 | table dvc user object_file_name
+
+Attackers use the Startup Folder for persistence by placing files that execute automatically at each user logon. This ensures malicious programs run every time the system starts, maintaining access.
