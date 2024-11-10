@@ -57,3 +57,11 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode=  4719 AND dvc_
 |eval severity="Medium"
 | rename dvc_nt_host AS dvc, src_user AS user
 | table dvc user, severity
+
+
+
+
+index=windows AND source="XmlWinEventLog:Security" AND EventCode= 4657 AND (ObjectName = *Run* OR ObjectName = *RunOnce*) AND name="A registry value was modified" AND dvc_nt_host IN ("WIN-SATJ7KSGAVM","")
+| eval severity = High
+| rename dvc_nt_host AS dvc,SubjectUserName AS user 
+| table dvc user ObjectValueName NewValue severity
