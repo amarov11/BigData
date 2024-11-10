@@ -28,3 +28,9 @@ index=windows EventCode=4688 AND process_name="setspn.exe"
 | eval severity="medium"
 | rename dvc_nt_host as dvc, SubjectUserName as user
 | table dvc user severity process_name
+
+
+index=windows AND EventCode=4657 ObjectValueName=DisablePasswordChange NewValue=1 source="XmlWinEventLog:Security" dvc_nt_host IN ("WIN-SATJ7KSGAVM","machine") 
+| eval severity="medium" 
+| rename SubjectUserName AS user, dvc_nt_host AS dvc
+| table dvc user ObjectValueName NewValue
