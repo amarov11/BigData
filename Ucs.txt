@@ -107,3 +107,15 @@ index=windows AND (EventCode=4688 Process_Command_Line=*powercat*) OR (EventCode
 The C2 Non-Application Layer Protocol technique involves using transport layer protocols like TCP or UDP for command-and-control communication, bypassing application-layer defenses. Tools like powercat in PowerShell can facilitate covert C2 channels by leveraging these lower-level protocols.
 
 C2 Non-Application Layer Protocol - powercat - Powershell Event
+
+
+
+index=windows AND source="XmlWinEventLog:Microsoft-Windows-PowerShell/Operational" AND ScriptBlockText="Invoke-PowerShellIcmp -IPAddress*"
+| eval severity="High"
+| rename dvc_nt_host AS dvc
+| table dvc ScriptBlockText severity
+
+
+C2 Non-Application Layer Protocol - PowerShellIcmp - Powershell Events
+
+owerShellIcmp uses PowerShell to craft and send ICMP packets for covert Command and Control communication, bypassing traditional detection. This technique exploits the ICMP protocol, which is often allowed by network defenses, to evade monitoring systems.
