@@ -96,3 +96,14 @@ C2 Non-Application Layer Protocol refers to using tools like Netcat to create co
 
 
 C2 Non-Application Layer Protocol - netcat - Process Event
+
+
+index=windows AND (EventCode=4688 Process_Command_Line=*powercat*) OR (EventCode=4104 AND ScriptBlockText=*powercat*)  
+| eval severity="High" 
+| rename dvc_nt_host AS dvc, src_user AS user
+| table dvc user Process_Command_Line ScriptBlockText severity
+
+
+The C2 Non-Application Layer Protocol technique involves using transport layer protocols like TCP or UDP for command-and-control communication, bypassing application-layer defenses. Tools like powercat in PowerShell can facilitate covert C2 channels by leveraging these lower-level protocols.
+
+C2 Non-Application Layer Protocol - powercat - Powershell Event
