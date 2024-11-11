@@ -93,3 +93,6 @@ index=windows AND EventCode=4688 AND (parent_process_name="nc.exe" OR parent_pro
 | table dvc user parent_process_name
 
 C2 Non-Application Layer Protocol refers to using tools like Netcat to create covert communication channels. Detection focuses on monitoring process creation and command-line arguments for unusual network activity
+
+
+C2 Non-Application Layer Protocol - netcat - Process Event
