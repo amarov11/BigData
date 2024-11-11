@@ -74,3 +74,13 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode= 4663 AND file_
 | table dvc user object_file_name
 
 Attackers use the Startup Folder for persistence by placing files that execute automatically at each user logon. This ensures malicious programs run every time the system starts, maintaining access.
+
+
+
+index=windows AND source=XmlWinEventLog:Microsoft-Windows-PowerShell/Operational AND (( EventCode=4103 AND Payload=*Get-ChildItem* AND Payload =*Hidden*) OR (EventCode=4104 AND ScriptBlockText=*ShowSuperHidden*))
+| eval severity="Medium"
+| rename dvc_nt_host AS dvc
+| table dvc Payload ScriptBlockText
+
+
+Adversaries use hidden files and directories to evade detection, marking files with hidden attributes or creating concealed folders. This tactic keeps malicious components undetected, aiding persistence on the system
