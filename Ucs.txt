@@ -144,3 +144,9 @@ index=windows  AND source="WinEventLog:Security" AND EventCode=4688 AND *cpasswo
 | eval severity = "High" 
 | rename dvc_nt_host AS dvc 
 | table dvc src_user Process_Command_Line severity
+
+
+index=windows AND source="XmlWinEventLog:Security" AND EventCode=4624  AND Logon_Type!=3 AND dvc_nt_host=*dc* | regex user="^(....|.*admin)$"
+| eval severity = "Medium"  
+| rename dvc_nt_host AS dvc
+| table dvc user severity
