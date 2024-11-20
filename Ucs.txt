@@ -154,3 +154,10 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode=4624  AND Logon
 
 
 SID Filtering Disabled: Disabling SID filtering allows attackers to abuse SID history for privilege escalation across domain trusts, potentially gaining unauthorized access.
+
+
+
+index=windows  AND source="WinEventLog:Security" AND EventCode=4716 | rex field=Message "SID Filtering: \s*(?P<SID_Filtering>\w+)"| search SID_Filtering=Disabled
+| eval severity = "Medium" 
+| rename dvc_nt_host AS dvc 
+| table dvc user SID_Filtering severity
