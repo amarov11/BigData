@@ -150,3 +150,7 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode=4624  AND Logon
 | eval severity = "Medium"  
 | rename dvc_nt_host AS dvc
 | table dvc user severity
+
+
+
+SID Filtering Disabled: Disabling SID filtering allows attackers to abuse SID history for privilege escalation across domain trusts, potentially gaining unauthorized access.
