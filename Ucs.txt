@@ -132,3 +132,9 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode=5136 ObjectClas
 | eval msg= ObjectClass ." Modified"
 | rename dvc_nt_host AS dvc, src_user AS user
 | table dvc user msg severity
+
+
+
+
+
+The GPP cPassword vulnerability involves attackers extracting plaintext passwords stored in Group Policy Preferences (GPP) XML files, often used for configuring local accounts or services.
