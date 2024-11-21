@@ -176,3 +176,6 @@ index=windows  AND source="WinEventLog:Security" AND EventCode=5142 AND user!=*$
 | eval severity = "Medium"
 | rename dvc_nt_host AS dvc
 | table dvc user Share_Path severity
+
+
+reg add HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce /v TestKey /t REG_SZ /d "cmd.exe /c echo RunOnce Test
