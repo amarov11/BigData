@@ -168,3 +168,11 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode=4624  AND Logon
 | eval severity = "Medium"  
 | rename dvc_nt_host AS dvc
 | table dvc user severity
+
+
+
+
+index=windows  AND source="WinEventLog:Security" AND EventCode=5142 AND user!=*$
+| eval severity = "Medium"
+| rename dvc_nt_host AS dvc
+| table dvc user Share_Path severity
