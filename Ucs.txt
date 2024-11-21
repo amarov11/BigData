@@ -179,3 +179,10 @@ index=windows  AND source="WinEventLog:Security" AND EventCode=5142 AND user!=*$
 
 
 reg add HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce /v TestKey /t REG_SZ /d "cmd.exe /c echo RunOnce Test
+
+
+
+index=windows AND *reg.exe* parent_process_name="cmd.exe" AND process_exec="reg.exe" AND (process="*RunOnce*" OR process="*Run*")
+| eval severity = "High"
+| rename dvc_nt_host AS dvc 
+| table dvc user process
