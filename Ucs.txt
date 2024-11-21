@@ -200,3 +200,10 @@ set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 
 
 | rex field=user_id "(?<=\\)(?<extracted_name>.+)"
+
+
+index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational" AND EventCode=4103 AND (Payload="*new-ItemProperty*" OR Payload="*set-ItemProperty*") AND (Payload="*RunOnce*" OR Payload="*Run*")
+| rex field=user_id "(?<=\\\\)(?<user>.+)"
+| eval severity = "High" 
+| rename dvc_nt_host AS dvc 
+| table dvc user Payload
