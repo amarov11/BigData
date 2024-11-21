@@ -226,3 +226,8 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND parent_pr
 | eval severity = "Medium" 
 | rename dvc_nt_host AS dvc
 | table dvc user parent_process_name process_name
+
+
+
+Sub-technique T1059.005: Visual Basic (VBScript)
+Description: Adversaries may use cscript.exe to execute VBScript for malicious purposes, including execution of payloads or automation of tasks.
