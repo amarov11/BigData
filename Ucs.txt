@@ -213,3 +213,10 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND parent_pr
 | eval severity = "High"
 | rename dvc_nt_host AS dvc 
 | table dvc user process
+
+
+1111111111111
+' Script to get the hostname of the machine
+Set objNetwork = CreateObject("WScript.Network")
+WScript.Echo "Hostname: " & objNetwork.ComputerName
+111111111111
