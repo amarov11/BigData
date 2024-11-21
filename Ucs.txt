@@ -197,3 +197,6 @@ index=windows AND source="XmlWinEventLog:Microsoft-Windows-PowerShell/Operationa
 new-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "testkey2"
 
 set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "testkey3"
+
+
+| rex field=user_id "(?<=\\)(?<extracted_name>.+)"
