@@ -186,3 +186,14 @@ index=windows AND *reg.exe* parent_process_name="cmd.exe" AND process_exec="reg.
 | eval severity = "High"
 | rename dvc_nt_host AS dvc 
 | table dvc user process
+
+
+
+index=windows AND source="XmlWinEventLog:Microsoft-Windows-PowerShell/Operational" AND EventCode=4103 AND (Payload="*new-ItemProperty*" OR Payload="*set-ItemProperty*") AND (Payload="*RunOnce*" OR Payload="*Run*")
+| rex field=_raw "User\s*=\s\w+\\\(?P<user>\S+)"
+| eval severity = High
+| table dvc user Payload
+
+new-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "testkey2"
+
+set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "testkey3"
