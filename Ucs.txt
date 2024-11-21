@@ -207,3 +207,9 @@ index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational" 
 | eval severity = "High" 
 | rename dvc_nt_host AS dvc 
 | table dvc user Payload
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND parent_process_name="cmd.exe" AND process_exec="reg.exe" AND (process="*RunOnce*" OR process="*Run*")
+| eval severity = "High"
+| rename dvc_nt_host AS dvc 
+| table dvc user process
