@@ -277,3 +277,4 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_n
 
 
 | rex "User Account Control:\s+'(?<UAC>(?:[^']|'')+)'"
+| rex "User Account Control:\s+'(?<UAC>.*?)(?<!\\)'" 
