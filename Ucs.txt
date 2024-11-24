@@ -245,3 +245,12 @@ Description: Adversaries may use cscript.exe to execute VBScript for malicious p
 
 
 Adversaries use process discovery techniques to identify running processes on a system. This helps them understand the environment, identify security solutions, or find specific applications for further exploitation.
+
+
+index=windows AND (source="WinEventLog:Security" AND EventCode=4688 AND parent_process_name IN ("explorer.exe","cmd.exe","explorer.exe","powershell.exe") AND new_process_name IN ("Taskmgr.exe","Tasklist.exe")) OR  (source="WinEventLog:Microsoft-Windows-PowerShell/Operational" AND EventCode=4104 AND (ScriptBlockText
+="*get-process*") OR (ScriptBlockText
+="*"*Get-WmiObject -class Win32_process*"*"))
+| rex field=user_id "(?<=\\\\)(?<user>[^']+)"
+| eval severity="Low"
+| rename dvc_nt_host AS dvc 
+| table dvc user parent_process_name new_process_name ScriptBlockText severity
