@@ -241,3 +241,7 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND parent_pr
 
 Sub-technique T1059.005: Visual Basic (VBScript)
 Description: Adversaries may use cscript.exe to execute VBScript for malicious purposes, including execution of payloads or automation of tasks.
+
+
+
+Adversaries use process discovery techniques to identify running processes on a system. This helps them understand the environment, identify security solutions, or find specific applications for further exploitation.
