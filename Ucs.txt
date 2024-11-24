@@ -254,3 +254,7 @@ index=windows AND (source="WinEventLog:Security" AND EventCode=4688 AND parent_p
 | eval severity="Low"
 | rename dvc_nt_host AS dvc 
 | table dvc user parent_process_name new_process_name ScriptBlockText severity
+
+
+DLL Injection - MavInject - Process Event:
+DLL Injection is a technique where a malicious DLL is injected into another process's memory to control or manipulate its behavior. MavInject is a tool used for this, allowing attackers to execute arbitrary code within a target process.
