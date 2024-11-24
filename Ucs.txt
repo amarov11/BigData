@@ -274,3 +274,6 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_n
 | eval severity = "High" 
 | rename dvc_nt_host AS dvc, src_user AS user
 | table dvc user process_name severity
+
+
+| rex "User Account Control:\s+'(?<UAC>(?:[^']|'')+)'"
