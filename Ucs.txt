@@ -278,3 +278,10 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_n
 
 | rex "User Account Control:\s+'(?<UAC>(?:[^']|'')+)'"
 | rex "User Account Control:\s+'(?<UAC>.*?)(?<!\\)'" 
+
+
+
+Disabling Kerberos pre-authentication weakens security by allowing attackers to send crafted Kerberos authentication requests. This enables the retrieval of TGTs (Ticket Granting Tickets) encrypted with the user's NTLM hash, which can be cracked offline to reveal the plaintext password.
+
+
+Kerberos Pre-Authentication Flag Disabled in UserAccountControl
