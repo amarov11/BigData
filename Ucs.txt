@@ -267,3 +267,10 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_n
 
 
 DLL injection is a technique where attackers force a running process to load a malicious DLL into its memory. This allows the attacker to execute code within the targeted process, often for gaining persistence, evading detection, or performing malicious activities without triggering alarms. It can be combined with other techniques like process hollowing or reflective DLL injection.
+
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_name="usoclient.exe" AND process="*StartDownload*"
+| eval severity = "High" 
+| rename dvc_nt_host AS dvc, src_user AS user
+| table dvc user process_name severity
