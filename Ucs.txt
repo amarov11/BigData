@@ -285,3 +285,11 @@ Disabling Kerberos pre-authentication weakens security by allowing attackers to 
 
 
 Kerberos Pre-Authentication Flag Disabled in UserAccountControl
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4738 AND New_UAC_Value=0x10210
+|eval UAC=case 
+(like(New_UAC_Value,"0x10210"),"don't require kerberos preauthentication")
+| eval severity = "Medium" 
+| rename dvc_nt_host AS dvc, Target_Account_Name AS user
+| table dvc src_user user UAC severity
+| dedup user
