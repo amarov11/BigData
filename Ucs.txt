@@ -24,3 +24,7 @@ device.class = 'Windows Hosts' && reference.id = '4624' && logon.type = '10' && 
 
 schtasks /create /tn "LaunchCmdTest" /tr "cmd.exe" /sc once /st 00:00
 schtasks /run /tn "LaunchCmdTest"
+
+
+
+cmd.exe (Command Prompt) and powershell.exe (PowerShell) are legitimate system utilities but are often exploited by attackers to execute scripts or commands. These processes may have a malicious parent process (e.g., a suspicious executable or script) initiating them.
