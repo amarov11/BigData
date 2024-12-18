@@ -35,3 +35,7 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND parent_pr
 | eval severity = "High" 
 | rename dvc_nt_host AS dvc 
 | table parent_process_name new_process_name user severity
+
+
+
+PowerShell (powershell.exe) is a legitimate system administration tool, but it is often exploited by attackers for malicious purposes. A whitelist approach helps identify deviations from expected behavior by focusing on legitimate parent processes that should typically invoke PowerShell
