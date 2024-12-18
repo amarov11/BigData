@@ -63,3 +63,6 @@ The technique "Suspected PowerShell Commands - Blacklist - PowerShell Events" ty
 index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational"  AND EventCode=4104 AND ( " -NoP "OR "*-W Hidden*" OR "*-e* JAB*" OR "*-e* SUVYI*" OR "*-e* SQBFAFgA*" OR "*-e* aWV4I*" OR "*-e* IAB*" OR "*-e* PAA*" OR "*-e* aQBlAHgA*" OR "*.downloadstring*" OR "*.downloadfile*" OR "*;iex*")
 | eval severity = "High"
 | rename dvc_nt_host AS dvc, UserID AS user
+
+
+sc create AdminService binPath= "cmd.exe /k" start= demand obj= "DOMAIN\AdminUser" password= "AdminPassword"
