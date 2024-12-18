@@ -19,3 +19,8 @@ reference.id = '4688' && process.src contains 'c:\windows\system32\services.exe'
 Connection to DC without passing by console:
 
 device.class = 'Windows Hosts' && reference.id = '4624' && logon.type = '10' && ip.src != 10.51.116.38,10.61.119.20 && device.host contains 'dc'
+
+
+
+schtasks /create /tn "LaunchCmdTest" /tr "cmd.exe" /sc once /st 00:00
+schtasks /run /tn "LaunchCmdTest"
