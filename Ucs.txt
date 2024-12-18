@@ -28,3 +28,10 @@ schtasks /run /tn "LaunchCmdTest"
 
 
 cmd.exe (Command Prompt) and powershell.exe (PowerShell) are legitimate system utilities but are often exploited by attackers to execute scripts or commands. These processes may have a malicious parent process (e.g., a suspicious executable or script) initiating them.
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND parent_process_name IN ( "winword.exe", "excel.exe", "powerpnt.exe", "mspub.exe", "visio.exe", "outlook.exe", "java", "lsass.exe", "csrss.exe", "epad.exe", "regsvr32.exe", "dllhost.exe", "LogonUI.exe", "wermgr.exe", "spoolsv.exe", "jucheck.exe", "jusched.exe", "ctfmon.exe", "taskhostw.exe", "GoogleUpdate.exe", "sppsvc.exe", "sihost.exe", "slui.exe", "SIHClient.exe", "SearchIndexer.exe", "SearchProtocolHost.exe", "FlashPlayerUpdateService.exe", "WerFault.exe", "WUDFHost.exe", "unsecapp.exe", "wlanext.exe", "wordpad.exe") AND new_process_name IN ("cmd.exe","powershell.exe")
+
+| eval severity = "High" 
+| rename dvc_nt_host AS dvc 
+| table parent_process_name new_process_name user severity
