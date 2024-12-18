@@ -66,3 +66,5 @@ index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational" 
 
 
 sc create AdminService binPath= "cmd.exe /k" start= demand obj= "DOMAIN\AdminUser" password= "AdminPassword"
+
+This technique involves leveraging a service or process that is running with administrative privileges on a system
