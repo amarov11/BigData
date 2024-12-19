@@ -99,3 +99,9 @@ index=skyhigh | search destip="*"  AND  url !="http://ipv6.msftconnecttest.com/c
 regex destip="^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$|^(([0-9a-fA-F]{1,4}:){1,7}|:):$|^([0-9a-fA-F]{1,4}:){1,7}:$|::([0-9a-fA-F]{1,4}:){1,7}[0-9a-fA-F]{1,4}$"
 | eval severity = "Medium" 
 | table user srcip destip
+
+IPv6 traffic in a network environment can be legitimate but may also indicate suspicious behavior or potential attacks when observed unexpectedly or without proper planning. Below is a brief explanation of compliance, attacks, behaviors, and associated MITRE ATT&CK techniques:
+
+IPv6 traffic in the network
+
+T1572
