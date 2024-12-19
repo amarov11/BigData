@@ -107,4 +107,9 @@ IPv6 traffic in the network
 T1572
 
 
-host.src regex '^(?:(?!DZ[0-9]{7}[L,D,T,P]$).*)' AND host.src regex '^(?!(sga|isga|xsga|hsga|-|\\sga)).*'
+index=<your_index> sourcetype=<your_sourcetype>
+| where NOT match(host.src, "DZ[0-9]{7}[L,D,T,P]$") AND NOT match(host.src, "^(sga|isga|xsga|hsga|-|\\\\sga).*")
+| table _time host.src
+
+
+
