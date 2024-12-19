@@ -85,3 +85,6 @@ index=windows AND source="XmlWinEventLog:Security" AND EventCode=4624 AND Logon_
 | rename dvc_nt_host AS dvc
 | table dvc user src_ip dvc severity
 
+
+
+Detect unauthorized changes to system time, which adversaries may use to evade detection or manipulate logs.
