@@ -105,3 +105,6 @@ IPv6 traffic in a network environment can be legitimate but may also indicate su
 IPv6 traffic in the network
 
 T1572
+
+
+host.src regex '^(?:(?!DZ[0-9]{7}[L,D,T,P]$).*)' AND host.src regex '^(?!(sga|isga|xsga|hsga|-|\\sga)).*'
