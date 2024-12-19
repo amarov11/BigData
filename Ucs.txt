@@ -18,7 +18,7 @@ reference.id = '4688' && process.src contains 'c:\windows\system32\services.exe'
 
 Connection to DC without passing by console:
 
-device.class = 'Windows Hosts' && reference.id = '4624' && logon.type = '10' && ip.src != 10.51.116.38,10.61.119.20 && device.host contains 'dc'
+device.class = 'Windows Hosts' && reference.id = '4624' && logon.type = '10' && ip.src != 10.51.116.38,39,3,10.61.119.20 && device.host contains 'dc'
 
 
 
@@ -74,3 +74,8 @@ index=windows AND source="WinEventLog:Security" AND  EventCode=4688 AND  parent_
 | eval severity = "Medium" 
 | rename dvc_nt_host AS dvc 
 | table dvc user parent_process_name severity
+
+
+Connection to DC without passing by console
+Detect and alert when a user establishes a connection to a Domain Controller (DC) without utilizing the console (e.g., via remote desktop or other non-console methods). This ensures compliance with security policies restricting non-console administrative access to sensitive systems.
+
