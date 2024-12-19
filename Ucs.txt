@@ -123,3 +123,9 @@ In many organizations, devices follow a standardized naming pattern to maintain 
 Machine Nomination Doesn't Respect Organizational Naming Pattern
 
 T1078.002
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4672 | regex user="^z[1-9]{3}"
+| eval severity = "Medium" 
+| rename dvc_nt_host AS dvc 
+| table dvc user severity
