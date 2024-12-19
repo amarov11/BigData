@@ -112,4 +112,8 @@ index=<your_index> sourcetype=<your_sourcetype>
 | table _time host.src
 
 
-
+index=windows AND EventCode=4624 AND user=*$
+| where NOT match(user, "DZ[0-9]{7}[L,D,T,P]") AND NOT match(user, "^(sga|SGA|isga|xsga|hsga|SGAH|VX-ESXI|VSGA|-|\\\\sga).*")
+| eval severity = "Low"
+| rename user AS dvc
+| table dvc severity
