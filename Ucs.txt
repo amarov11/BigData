@@ -117,3 +117,9 @@ index=windows AND EventCode=4624 AND user=*$
 | eval severity = "Low"
 | rename user AS dvc
 | table dvc severity
+
+In many organizations, devices follow a standardized naming pattern to maintain operational consistency and facilitate monitoring. Machines with non-compliant names could signify unauthorized additions, potential security risks, or misconfigurations. This use case focuses on identifying and flagging such machines for further review
+
+Machine Nomination Doesn't Respect Organizational Naming Pattern
+
+T1078.002
