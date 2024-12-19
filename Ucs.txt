@@ -93,3 +93,9 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4616
 | eval severity = "Low" 
 | rename dvc_nt_host AS dvc 
 | table dvc user severity
+
+
+index=<your_index> sourcetype=<your_sourcetype>
+| search destip="*" 
+| regex destip="^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$|^(([0-9a-fA-F]{1,4}:){1,7}|:):$|^([0-9a-fA-F]{1,4}:){1,7}:$|::([0-9a-fA-F]{1,4}:){1,7}[0-9a-fA-F]{1,4}$"
+| table _time destip
