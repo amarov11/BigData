@@ -204,3 +204,13 @@ index=your_index sourcetype=your_sourcetype EventCode=4769
   | dedup src
   | format ]
 | table _time EventCode src
+
+
+index=windows EventCode=4769
+| eval earliest=_time-5, latest=_time
+| join src [
+    search index=windows EventCode=4768
+    | fields src _time
+]
+| where _time <= earliest+5
+| table _time EventCode src
