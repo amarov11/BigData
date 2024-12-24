@@ -185,3 +185,9 @@ index=windows  AND host="SGA-ASTM006" AND (EventCode=4769 OR EventCode=4768)
 | search short_lived = TRUE 
 | stats values(user) by _time EventCode
 | search *
+
+
+index=windows AND host="SGA-ASTM006" AND (EventCode=4769 OR EventCode=4768)
+| transaction src startswith=(EventCode=4768) endswith=(EventCode=4769)
+| search NOT duration=*  // Select only 4769 events without a preceding 4768
+| table _time src user EventCode
