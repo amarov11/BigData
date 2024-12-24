@@ -157,7 +157,7 @@ index=your_index_name
 | eval key=User."|".Source_Workstation
 | bin _time span=1h
 | stats values(EventCode) as event_codes by key User Source_Workstation _time
-| eval has_4768=if("4768" IN event_codes, 1, 0)
-| eval has_4769=if("4769" IN event_codes, 1, 0)
+| eval has_4768=if(mvfind(event_codes, "4768") != -1, 1, 0)
+| eval has_4769=if(mvfind(event_codes, "4769") != -1, 1, 0)
 | where has_4768=0 AND has_4769=1
 | table _time User Source_Workstation event_codes
