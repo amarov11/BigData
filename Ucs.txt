@@ -161,3 +161,10 @@ index=your_index_name
 | eval has_4769=if(mvfind(event_codes, "4769") != -1, 1, 0)
 | where has_4768=0 AND has_4769=1
 | table _time User Source_Workstation event_codes
+
+
+index=your_index_name EventCode=4769
+| eval normalized_user=lower(split(User, "@")[0])  <!-- Normalize User -->
+| eval search_window=_time - 3  <!-- Define a 3-second lookback window -->
+| search NOT [ search index=your_index_name EventCode=4768 _where “User” field ]
+| table User Source_Workstation Source_Workstation
