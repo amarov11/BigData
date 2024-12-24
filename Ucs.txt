@@ -191,3 +191,16 @@ index=windows AND host="SGA-ASTM006" AND (EventCode=4769 OR EventCode=4768)
 | transaction src startswith=(EventCode=4768) endswith=(EventCode=4769)
 | search NOT duration=*  // Select only 4769 events without a preceding 4768
 | table _time src user EventCode
+
+
+
+To detect a potential Golden Ticket attack using Splunk by correlating events 4769 and 4768 within a 5-second window based on the src field, you can use a subsearch in SPL. Here's how you can write the query:
+
+spl
+Copy code
+index=your_index sourcetype=your_sourcetype EventCode=4769
+[ search index=your_index sourcetype=your_sourcetype EventCode=4768 earliest=-5s latest=now
+  | fields src
+  | dedup src
+  | format ]
+| table _time EventCode src
