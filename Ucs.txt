@@ -155,6 +155,9 @@ kerberos::golden /domain:cs.org /sid:S-1-5-21-1833177430-4054197050-709912635 /r
 index=your_index_name
 (EventCode=4768 OR EventCode=4769)
 | eval key=User."|".Source_Workstation
-| stats values(EventCode) as event_codes count by key User Source_Workstation _time span=1h
-| where NOT mvcontains(event_codes, "4768") AND mvcontains(event_codes, "4769")
+| bin _time span=1h
+| stats values(EventCode) as event_codes by key User Source_Workstation _time
+| eval has_4768=if("4768" IN event_codes, 1, 0)
+| eval has_4769=if("4769" IN event_codes, 1, 0)
+| where has_4768=0 AND has_4769=1
 | table _time User Source_Workstation event_codes
