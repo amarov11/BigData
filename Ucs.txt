@@ -150,3 +150,11 @@ index=windows EventCode=4769
 | `kerberos_service_ticket_request_using_rc4_encryption_filter`
 
 kerberos::golden /domain:cs.org /sid:S-1-5-21-1833177430-4054197050-709912635 /rc4:9fd6073cd1b3969263ea36f50e787938 /user:Administrator /id:500 /renewmax:7 /endin:8 /ptt   
+
+
+index=your_index_name
+(EventCode=4768 OR EventCode=4769)
+| eval key=User."|".Source_Workstation
+| stats values(EventCode) as event_codes count by key User Source_Workstation _time span=1h
+| where NOT mvcontains(event_codes, "4768") AND mvcontains(event_codes, "4769")
+| table _time User Source_Workstation event_codes
