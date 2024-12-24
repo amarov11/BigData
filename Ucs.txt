@@ -176,3 +176,12 @@ index=windows sourcetype=XmlWinEventLog EventCode=5137 OR EventCode=5141 ObjectD
 | search short_lived = TRUE 
 | stats values(ObjectDN) values(signature) values(EventCode) by _time, Computer, SubjectUserName, dvc
 | search *
+
+
+
+index=windows  AND host="SGA-ASTM006" AND (EventCode=4769 OR EventCode=4768)
+| transaction src startswith=(EventCode=4768) endswith=(EventCode=4769)
+| eval short_lived=case((duration<10),"TRUE") 
+| search short_lived = TRUE 
+| stats values(user) by _time EventCode
+| search *
