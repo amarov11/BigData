@@ -214,3 +214,14 @@ index=windows EventCode=4769
 ]
 | where _time <= earliest+5
 | table _time EventCode src
+
+
+index=main earliest=1690451977 latest=1690452262
+source="WinEventLog:Security" user!=*$ EventCode IN (4768,4769,4770)
+| rex field=user "(?<username>[^@]+)"
+| rex field=src_ip "(\:\:ffff\:)?(?<src_ip_4>[0-9\.]+)"
+| transaction username, src_ip_4 maxspan=10h keepevicted=true startswith=
+(EventCode=4768)
+| where closed_txn=0
+| search NOT user="*$@*"
+| table _time, ComputerName, username, src_ip_4, service_name, category
