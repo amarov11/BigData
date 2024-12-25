@@ -246,3 +246,9 @@ index=windows AND user!=*$ AND EventCode IN (4768,4769) AND (host=SGA-ASTM006 OR
 
 
 An Active Directory Replication User Backdoor involves an adversary granting a standard or unprivileged user account specific replication permissions within Active Directory (AD). This enables the account to replicate directory data, including sensitive information like password hashes, effectively creating a backdoor for unauthorized access.
+
+
+index=windows  AND EventCode=4662 AND (*1131f6aa-9c07-11d1-f79f-00c04fc2dcd2* OR *1131f6ad-9c07-11d1-f79f-00c04fc2dcd2* OR *89e95b76-444d-4c62-991a-0facbeda640c*) AND Object_Type=*19195a5b-6da0-11d0-afd3-00c04fd930c9* AND user!=*$
+| eval severity = "High" 
+| rename dvc_nt_host AS dvc 
+| table dvc user severity
