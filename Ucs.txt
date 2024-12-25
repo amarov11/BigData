@@ -243,3 +243,6 @@ index=windows AND user!=*$ AND EventCode IN (4768,4769) AND (host=SGA-ASTM006 OR
 
 
  rex field=_raw "\[(?<name>[^\]]+)\]"
+
+
+An Active Directory Replication User Backdoor involves an adversary granting a standard or unprivileged user account specific replication permissions within Active Directory (AD). This enables the account to replicate directory data, including sensitive information like password hashes, effectively creating a backdoor for unauthorized access.
