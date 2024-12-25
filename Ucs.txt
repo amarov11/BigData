@@ -225,3 +225,6 @@ source="WinEventLog:Security" user!=*$ EventCode IN (4768,4769,4770)
 | where closed_txn=0
 | search NOT user="*$@*"
 | table _time, ComputerName, username, src_ip_4, service_name, category
+
+
+Pass-the-Ticket (Golden Ticket) is a credential theft and lateral movement technique in which attackers use Kerberos ticket-granting tickets (TGTs) forged with domain administrator credentials. This allows them to authenticate as any user within a domain without needing the user’s password. The Golden Ticket exploit provides long-term access to the compromised domain, often bypassing traditional password policies.
