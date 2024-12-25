@@ -228,3 +228,15 @@ source="WinEventLog:Security" user!=*$ EventCode IN (4768,4769,4770)
 
 
 Pass-the-Ticket (Golden Ticket) is a credential theft and lateral movement technique in which attackers use Kerberos ticket-granting tickets (TGTs) forged with domain administrator credentials. This allows them to authenticate as any user within a domain without needing the user’s password. The Golden Ticket exploit provides long-term access to the compromised domain, often bypassing traditional password policies.
+
+
+index=windows AND user!=*$ AND EventCode IN (4768,4769) AND (host=SGA-ASTM006 OR host=DCPM*) AND category="Kerberos Service Ticket Operations"
+| eval severity = "High" 
+| rex field=user "(?<username>[^@]+)"
+| rex field=src_ip "(\:\:ffff\:)?(?<src_ip_4>[0-9\.]+)"
+| transaction username, src_ip_4 maxspan=1h keepevicted=true startswith=
+(EventCode=4768)
+| where closed_txn=0
+| search NOT user="*$@*"
+| rename dvc_nt_host AS dvc, username As user
+| table _time, dvc, user, src_ip_4, service_name, category EventCode  severity
