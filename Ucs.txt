@@ -240,3 +240,6 @@ index=windows AND user!=*$ AND EventCode IN (4768,4769) AND (host=SGA-ASTM006 OR
 | search NOT user="*$@*"
 | rename dvc_nt_host AS dvc, username As user
 | table _time, dvc, user, src_ip_4, service_name, category EventCode  severity
+
+
+ rex field=_raw "\[(?<name>[^\]]+)\]"
