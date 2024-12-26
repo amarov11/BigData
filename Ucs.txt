@@ -295,3 +295,8 @@ index=windows AND source="WinEventLog:Security" AND EventCode=5142 AND NOT Share
 | table dvc user severity
 
 insecure protocols in the network (e.g., HTTP, FTP) can expose data to interception, enabling unauthorized access or breaches. Ensuring secure alternatives like HTTPS or SFTP is critical for compliance and data protection
+
+index=fortinet AND sourcetype=fortigate_traffic AND service IN ("telnet","tftp","cpd","ftp","http","cdp")
+| eval severity = "Medium" 
+|dedup service
+| table srcip dstip service severity
