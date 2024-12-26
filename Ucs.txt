@@ -265,3 +265,6 @@ index=firewall_logs
 
 
 P2P networks pose risks like malware infections, data leaks, and compliance violations due to unverified file sharing. They can also consume bandwidth and enable threat actors to operate anonymously
+
+
+Unauthorized shared folders can expose sensitive data to unauthorized users, increasing breach risks and violating security policies. Detecting and preventing such actions is vital for compliance and data protection.
