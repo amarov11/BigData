@@ -262,3 +262,6 @@ index=firewall_logs
 | stats count by src_ip dest_ip dest_port application
 | where count > 50  // Threshold for multiple connections
 | table src_ip dest_ip dest_port application count
+
+
+P2P networks pose risks like malware infections, data leaks, and compliance violations due to unverified file sharing. They can also consume bandwidth and enable threat actors to operate anonymously
