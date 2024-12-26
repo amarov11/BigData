@@ -268,3 +268,4 @@ P2P networks pose risks like malware infections, data leaks, and compliance viol
 
 
 Unauthorized shared folders can expose sensitive data to unauthorized users, increasing breach risks and violating security policies. Detecting and preventing such actions is vital for compliance and data protection.
+
