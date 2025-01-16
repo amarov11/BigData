@@ -323,3 +323,8 @@ T1071
 
 Adversaries may use SMB/Windows Admin Shares for lateral movement within a network. Admin shares, such as C$, ADMIN$, and IPC$, are default network shares used for
 T1021
+
+index=windows AND source="WinEventLog:Security" EventCode=5140 host="*DC*" AND (file_name="*IPC$"OR file_name="*C$" )
+| eval severity = "High"
+| rename dvc_nt_host AS dvc 
+| table dvc user file_name severity
