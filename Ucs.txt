@@ -308,3 +308,14 @@ Detects accounts that do not match the organization’s standard username patter
 
 
 T1071
+
+
+| datamodel Authentication Authentication search 
+| search Authentication.signature_id=4624 AND NOT Authentication.user="SGA*" AND NOT Authentication.user="HealthMailbox*" AND NOT Authentication.user="unknown" AND NOT Authentication.user="system"  AND NOT Authentication.user="*$" AND NOT Authentication.user="LOCAL SERVICE" AND NOT Authentication.user="*-admin" AND NOT Authentication.user="admin_ndg" AND NOT Authentication.user="Système" AND NOT Authentication.user="admin_ndg"  AND NOT Authentication.user="admin_ndg" AND NOT Authentication.user="UMFD*" AND NOT Authentication.user="*-asuser" AND NOT Authentication.user="*-asadmin" AND NOT Authentication.user="*-adminZ" AND NOT ND NOT Authentication.user="ANONYMOUS LOGON" AND NOT Authentication.user="*-asadmin" AND NOT Authentication.user="DWM-*"
+| regex Authentication.user="^(?!\d{4})"
+| regex Authentication.user="^(?!Z|z\d{3})"
+| regex Authentication.user="^(?!dzs\d{4})"
+| eval severity = "Medium"
+| dedup Authentication.user 
+| rename Authentication.user AS user
+| table user severity
