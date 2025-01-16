@@ -319,3 +319,7 @@ T1071
 | dedup Authentication.user 
 | rename Authentication.user AS user
 | table user severity
+
+
+Adversaries may use SMB/Windows Admin Shares for lateral movement within a network. Admin shares, such as C$, ADMIN$, and IPC$, are default network shares used for
+T1021
