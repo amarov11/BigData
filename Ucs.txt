@@ -300,3 +300,11 @@ index=fortinet AND sourcetype=fortigate_traffic AND service IN ("telnet","tftp",
 | eval severity = "Medium" 
 |dedup service
 | table srcip dstip service severity
+
+
+
+
+Detects accounts that do not match the organization’s standard username pattern, which could indicate unauthorized access or lateral movement within the environment. It helps to identify anomalous or potentially malicious activity, such as account compromise or unauthorized access using legitimate accounts that deviate from the typical naming convention
+
+
+T1071
