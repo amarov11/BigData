@@ -23,3 +23,9 @@ user.dst ="root" && ( client = 'sshd' || client = 'syslog' || client = 'sshd(pam
 New Installed Windows Service" is a detection use case designed to identify the creation or installation of new Windows services on systems. This activity can indicate an adversary attempting to maintain persistence, execute malicious code, or escalate privileges. Malicious services are often installed via sc.exe, PowerShell, or other management tools
 
 T1543.003
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_exec="sc.exe" process_command_line_arguments="*create*"
+| eval severity = "Medium" 
+| rename dvc_nt_host AS dvc 
+| table dvc user process_exec process_command_line_arguments severity
