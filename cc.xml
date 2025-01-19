@@ -48,3 +48,14 @@ T1078
 | eval severity = "Medium" 
 | rename host AS dvc  Authentication.user AS user
 | table dvc user severity
+
+
+
+
+
+
+
+index=windows AND *splnk*
+| lookup default_users user OUTPUT user AS matchedUser
+| table user, matchedUser
+| dedup user
