@@ -36,3 +36,8 @@ index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational" 
 | eval severity = "Medium"
 | rename dvc_nt_host AS dvc UserID as user
 | table dvc user ScriptBlockText severity
+
+
+identifies authentication attempts using the root account. It ensures adherence to security policies by detecting potential misuse or malicious activity involving the highly privileged root account, which is often restricted in secure environments
+
+T1078
