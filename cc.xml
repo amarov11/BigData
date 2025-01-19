@@ -18,3 +18,8 @@ alert.id = "default"
 initial-access-Valid Accounts-defaultaccount-linux:
 
 user.dst ="root" && ( client = 'sshd' || client = 'syslog' || client = 'sshd(pam_audit)' || client = 'unix_chkpwd' || client = 'notice mcpd' || client = 'info sshd')
+
+
+New Installed Windows Service" is a detection use case designed to identify the creation or installation of new Windows services on systems. This activity can indicate an adversary attempting to maintain persistence, execute malicious code, or escalate privileges. Malicious services are often installed via sc.exe, PowerShell, or other management tools
+
+T1543.003
