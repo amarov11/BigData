@@ -328,3 +328,10 @@ index=windows AND source="WinEventLog:Security" EventCode=5140 host="*DC*" AND (
 | eval severity = "High"
 | rename dvc_nt_host AS dvc 
 | table dvc user file_name severity
+
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND *vssadmin* process_command_line_arguments="delete shadow*"
+| eval severity="high"
+| rename dvc_nt_host AS dvc
+| table dvc user process_command_line_arguments severity
