@@ -343,3 +343,7 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_c
 | eval severity="high" 
 | rename dvc_nt_host AS dvc
 | table dvc user process_exec process_command_line_arguments severity
+
+
+
+Disabling the Windows Recovery Console Repair prevents access to recovery tools, making system restoration difficult.
