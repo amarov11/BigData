@@ -347,3 +347,8 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_c
 
 
 Disabling the Windows Recovery Console Repair prevents access to recovery tools, making system restoration difficult.
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND "*reagent*"   process_exec="ReAgentc.exe"  process_command_line_arguments="/disable" 
+| eval severity="high" 
+| rename dvc_nt_host AS dvc
+| table dvc user process_exec process_command_line_arguments severity
