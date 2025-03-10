@@ -335,3 +335,11 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND *vssadmin
 | eval severity="high"
 | rename dvc_nt_host AS dvc
 | table dvc user process_command_line_arguments severity
+
+
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND process_command_line_arguments="shadowcopy delete*" AND process_exec="WMIC.exe" 
+| eval severity="high" 
+| rename dvc_nt_host AS dvc
+| table dvc user process_exec process_command_line_arguments severity
