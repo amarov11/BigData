@@ -360,3 +360,6 @@ Removing command history is a technique used by attackers (or administrators) to
 index=linux AND sourcetype=linux_audit AND ((a0=rm AND *.bash_history*) OR (*history -c*))
 | eval severity="Medium"
 | rename host AS dvc
+
+
+Attackers use hidden files and directories (those starting with a dot .) in Linux to conceal their activities, maintain persistence, and avoid detection. Since these files are not displayed by default when using ls, an inexperienced user or administrator may overlook them.
