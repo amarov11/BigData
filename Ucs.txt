@@ -363,3 +363,8 @@ index=linux AND sourcetype=linux_audit AND ((a0=rm AND *.bash_history*) OR (*his
 
 
 Attackers use hidden files and directories (those starting with a dot .) in Linux to conceal their activities, maintain persistence, and avoid detection. Since these files are not displayed by default when using ls, an inexperienced user or administrator may overlook them.
+
+index=linux AND sourcetype=linux_audit  AND (a0=ls AND (-a OR -A)) OR (a0=find AND a2= ".*" )
+| eval severity="Medium"
+| rename host AS dvc
+| table dvc a0 a2
