@@ -352,3 +352,6 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND "*reagent
 | eval severity="high" 
 | rename dvc_nt_host AS dvc
 | table dvc user process_exec process_command_line_arguments severity
+
+
+Removing command history is a technique used by attackers (or administrators) to erase traces of executed commands, making forensic analysis and detection more difficult.
