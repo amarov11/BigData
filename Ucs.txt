@@ -355,3 +355,8 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4688 AND "*reagent
 
 
 Removing command history is a technique used by attackers (or administrators) to erase traces of executed commands, making forensic analysis and detection more difficult.
+
+
+index=linux AND sourcetype=linux_audit AND ((a0=rm AND *.bash_history*) OR (*history -c*))
+| eval severity="Medium"
+| rename host AS dvc
