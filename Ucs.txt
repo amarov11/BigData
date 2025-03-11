@@ -368,3 +368,10 @@ index=linux AND sourcetype=linux_audit  AND (a0=ls AND (-a OR -A)) OR (a0=find A
 | eval severity="Medium"
 | rename host AS dvc
 | table dvc a0 a2
+
+
+
+index=linux AND sourcetype=linux_audit AND grep  AND "^\\..+" 
+| eval severity="Medium" 
+| rename host AS dvc
+| table dvc a0 a1 a2 a3
