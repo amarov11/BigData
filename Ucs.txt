@@ -378,3 +378,10 @@ index=linux AND sourcetype=linux_audit AND grep  AND "^\\..+"
 
 
 Multiple denied connection events on a proxy categorized as phishing-related indicate that a user or system is repeatedly attempting to access websites that are classified as phishing threats
+
+
+index=skyhigh urlc=*Phishing*
+| stats dc(user) AS Num_user values(user) As user by url 
+| where Num_user > 1
+| eval severity="high" 
+| table user url severity
