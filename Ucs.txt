@@ -375,3 +375,6 @@ index=linux AND sourcetype=linux_audit AND grep  AND "^\\..+"
 | eval severity="Medium" 
 | rename host AS dvc
 | table dvc a0 a1 a2 a3
+
+
+Multiple denied connection events on a proxy categorized as phishing-related indicate that a user or system is repeatedly attempting to access websites that are classified as phishing threats
