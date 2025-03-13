@@ -388,3 +388,7 @@ index=skyhigh urlc=*Phishing*
 
 
 Accessing a phishing URL occurs when a user visits a fraudulent website designed to steal sensitive information, such as login credentials, personal details, or financial data. These websites often mimic legitimate ones
+
+index=skyhigh urlc=*Phishing* 
+| eval severity="high" 
+| table user urlc url severity
