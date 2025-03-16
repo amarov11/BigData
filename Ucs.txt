@@ -410,3 +410,9 @@ Outbound Network monitoring - IP SRC
 
 ip.src exists && ip.dst exists && (ip.src = 10.0.0.0/8 || ip.src = 172.16.0.0/12 || ip.src = 192.168.0.0/16 ) && (ip.dst != 10.0.0.0/8 && ip.dst != 172.16.0.0/12 && ip.dst != 192.168.0.0/16)
 
+
+
+| datamodel Network_Traffic search
+| search (All_Traffic.src=10.0.0.0/8 OR All_Traffic.src=172.16.0.0/12 OR All_Traffic.src=192.168.0.0/16) AND (All_Traffic.dest!=10.0.0.0/8 OR All_Traffic.dest!=172.16.0.0/12 OR All_Traffic.dest!=192.168.0.0/16)
+| dedup All_Traffic.src
+| table All_Traffic.src All_Traffic.dest
