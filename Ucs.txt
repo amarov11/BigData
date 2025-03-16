@@ -399,7 +399,9 @@ Unauthorized or suspicious modifications to critical system files These files ar
 
 
 
-
+index=fim AND "System Configuration" AND NOT  "System Configuration Files -usr-lpp & var-spool" AND NOT "syncing of monitored" AND cimtrakUser=cmsdb*
+| eval severity="Medium"
+| table src cimtrakUser severity
 
 
 
