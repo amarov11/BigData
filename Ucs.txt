@@ -392,3 +392,15 @@ Accessing a phishing URL occurs when a user visits a fraudulent website designed
 index=skyhigh urlc=*Phishing* 
 | eval severity="high" 
 | table user urlc url severity
+
+
+Unauthorized or suspicious modifications to critical system files These files are essential for the proper functioning of an operating system and any unexpected changes may indicate persistence where attackers modify files to maintain access privilege escalation by altering files to gain higher privileges or evasion by tampering with security-related files to bypass detection
+
+
+
+
+
+
+
+
+
