@@ -416,3 +416,11 @@ ip.src exists && ip.dst exists && (ip.src = 10.0.0.0/8 || ip.src = 172.16.0.0/12
 | search (All_Traffic.src=10.0.0.0/8 OR All_Traffic.src=172.16.0.0/12 OR All_Traffic.src=192.168.0.0/16) AND (All_Traffic.dest!=10.0.0.0/8 OR All_Traffic.dest!=172.16.0.0/12 OR All_Traffic.dest!=192.168.0.0/16)
 | dedup All_Traffic.src
 | table All_Traffic.src All_Traffic.dest
+
+
+| datamodel Network_Traffic search
+| search (All_Traffic.src=10.0.0.0/8 OR All_Traffic.src=172.16.0.0/12 OR All_Traffic.src=192.168.0.0/16 OR All_Traffic.dest=172.41.0.0/16 OR All_Traffic.dest=192.102.51.0/24) AND NOT (All_Traffic.dest=10.0.0.0/8 OR All_Traffic.dest=172.16.0.0/12 OR All_Traffic.dest=192.168.0.0/16 OR All_Traffic.dest=172.41.0.0/16 OR All_Traffic.dest=192.102.51.0/24 OR All_Traffic.dest=unknown)
+| top limit=5 All_Traffic.dest All_Traffic.src
+| eval severity = "Medium" 
+| rename All_Traffic.dest AS ip.dest All_Traffic.src AS ip.src
+| table ip.src ip.dest severity
