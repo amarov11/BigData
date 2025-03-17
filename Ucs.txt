@@ -438,3 +438,18 @@ T1078.001
 | table src app user severity
 | dedup user
 | top user
+
+defense-evasion-Impair Defenses-Indicator Blocking:
+(device.class = 'windows hosts' && device.type = 'winevent_nic' &&  reference.id = '4688' &&  (param contains 'update trace' || param contains 'ETWEnabled' || (param contains 'Defender' &&  param contains 'REG_DWORD /d 0'))) || (device.type contains 'rhlinux' && (param contains '/etc/audit/auditd.conf' || param contains '/etc/audisp/audispd.conf' || param contains '/etc/rsyslog.conf')) || (event.source contains 'PowerShell' && (param contains 'ETWEnable' || (param contains 'Defender' && param contains 'Value 0')))
+
+Admin Access to Compliance Systems Details:
+alert.id='account:logon-success' && user.dst =$[Logs/admin users] && device.ip =$[Compliance/Compliance Systems]
+
+User Access to Compliance Systems Details:
+alert.id='account:logon-success' && user.dst !=$[Logs/admin users] && device.ip =$[Compliance/Compliance Systems]
+
+Admin Access to Compliance Systems Summary:
+alert.id='account:logon-success' && user.dst =$[Logs/admin users] && device.ip =$[Compliance/Compliance Systems]
+
+User Access to Compliance Systems Summary:
+alert.id='account:logon-success' && user.dst !=$[Logs/admin users] && device.ip =$[Compliance/Compliance Systems]
