@@ -439,6 +439,16 @@ T1078.001
 | dedup user
 | top user
 
+
+| datamodel Authentication Authentication search 
+| search Authentication.action=success AND Authentication.EventCode=4798
+| lookup default_users user AS Authentication.user OUTPUT user AS default_username
+| search  default_username=*
+| eval severity = "Medium"
+| rename default_username AS user, Authentication.Computer AS dvc
+| dedup user
+| table user dvc severity 
+
 defense-evasion-Impair Defenses-Indicator Blocking:
 (device.class = 'windows hosts' && device.type = 'winevent_nic' &&  reference.id = '4688' &&  (param contains 'update trace' || param contains 'ETWEnabled' || (param contains 'Defender' &&  param contains 'REG_DWORD /d 0'))) || (device.type contains 'rhlinux' && (param contains '/etc/audit/auditd.conf' || param contains '/etc/audisp/audispd.conf' || param contains '/etc/rsyslog.conf')) || (event.source contains 'PowerShell' && (param contains 'ETWEnable' || (param contains 'Defender' && param contains 'Value 0')))
 
