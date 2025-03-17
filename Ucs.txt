@@ -424,3 +424,7 @@ ip.src exists && ip.dst exists && (ip.src = 10.0.0.0/8 || ip.src = 172.16.0.0/12
 | eval severity = "Medium" 
 | rename All_Traffic.dest AS ip.dest All_Traffic.src AS ip.src
 | table ip.src ip.dest severity
+
+
+Connecting with a default account refers to logging into a system, application, or service using pre-configured credentials that are often set by vendors. These accounts are usually intended for initial setup and administration but can pose serious security risks if not changed or disabled.
+T1078.001 
