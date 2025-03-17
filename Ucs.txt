@@ -466,3 +466,25 @@ alert.id='account:logon-success' && user.dst !=$[Logs/admin users] && device.ip 
 
 Admin access on VSP machine:
 host.src = $[VSP_Machine] && user.dst = 'Admin_NDG'
+
+
+
+
+Groupe usecases
+Admin access on VSP machine
+Authentication on account related to known exploit   -----
+AV - Virus propagation with same virusname
+CERT malicious IOCs in browsing for cybersquatting -------
+CERT malicious IOCs in browsing for Tor ----------
+Connection from VSP user to non-VSP host ----------------
+Delete Volume Shadow Copies via VSS - Cmd_PowerShell Event -Device
+Delete Volume Shadow Copies via WMI - Cmd_PowerShell
+Disable Windows Recovery Console Repair - Device Host -
+ESET process killed by user
+Hacktool detected on machine
+Incident created in EDR
+Malicious access to administrative share on a domain controller
+Malicious browsing  to C2
+Malicious or suspicious browsing from VSP without referer
+Virus not removed on workstation
+
