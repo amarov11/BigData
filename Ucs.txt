@@ -453,3 +453,6 @@ alert.id='account:logon-success' && user.dst =$[Logs/admin users] && device.ip =
 
 User Access to Compliance Systems Summary:
 alert.id='account:logon-success' && user.dst !=$[Logs/admin users] && device.ip =$[Compliance/Compliance Systems]
+
+Admin access on VSP machine:
+host.src = $[VSP_Machine] && user.dst = 'Admin_NDG'
