@@ -428,3 +428,13 @@ ip.src exists && ip.dst exists && (ip.src = 10.0.0.0/8 || ip.src = 172.16.0.0/12
 
 Connecting with a default account refers to logging into a system, application, or service using pre-configured credentials that are often set by vendors. These accounts are usually intended for initial setup and administration but can pose serious security risks if not changed or disabled.
 T1078.001 
+
+| datamodel Authentication Authentication search 
+| search Authentication.action=success
+| lookup default_accounts username AS Authentication.user OUTPUT username AS default_username
+| search  default_username=*
+| eval severity = "Medium" 
+| rename Authentication.app AS app default_username AS user Authentication.src AS src
+| table src app user severity
+| dedup user
+| top user
