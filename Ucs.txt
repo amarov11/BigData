@@ -506,3 +506,5 @@ systemctl restart auditd
 echo "q_depth = 1" >> /etc/audisp/audispd.conf
 systemctl restart auditd
 
+defense evasion technique where attackers prevent security tools from detecting or logging their activities. They may disable logging, tamper with security software, or block communications between security tools and monitoring systems. This helps them avoid detection and maintain persistence.
+T1562.006
