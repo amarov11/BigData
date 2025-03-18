@@ -551,3 +551,6 @@ index=windows AND source="WinEventLog:Security" AND EventCode=4689 AND *eset* pr
 | eval severity="high" 
 | rename dvc_nt_host AS dvc
 | table dvc user process severity
+
+
+The built-in Administrator account (SID 500) is a highly privileged account in Windows environments. It should be used only in exceptional cases, as attackers often target it for privilege escalation or lateral movement
