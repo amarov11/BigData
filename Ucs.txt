@@ -545,3 +545,9 @@ T1562.006
 
 kills an antivirus process, it's typically part of a broader defense evasion strategy to disable security mechanisms and execute malicious actions without detection
 T1562.006
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode=4689 AND *eset* process=*eset*
+| eval severity="high" 
+| rename dvc_nt_host AS dvc
+| table dvc user process severity
