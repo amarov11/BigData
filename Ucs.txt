@@ -561,3 +561,8 @@ index=windows AND source="WinEventLog:Security" AND EventCode IN (4624,4625,4634
 | table dvc user member_id severity
 
 The NTDS.dit file is the Active Directory database stored in C:\Windows\NTDS\. Unauthorized access to this file is a critical security risk, as it contains hashed credentials and sensitive domain information.
+
+index=windows AND source="WinEventLog:Security" AND EventCode IN (4656,4663,4660,4690,4688) AND *NTDS.dit*
+| eval severity = "Low" 
+| rename dvc_nt_host AS dvc 
+| table dvc user severity
