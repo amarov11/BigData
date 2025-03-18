@@ -566,3 +566,5 @@ index=windows AND source="WinEventLog:Security" AND EventCode IN (4656,4663,4660
 | eval severity = "Low" 
 | rename dvc_nt_host AS dvc 
 | table dvc user severity
+
+Identify and alert on unauthorized access attempts to the Security Account Manager (SAM) database, which may indicate credential dumping, privilege escalation, or lateral movement attempts by attackers.
