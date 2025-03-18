@@ -541,3 +541,7 @@ T1562.006
 (index=linux sourcetype=linux_audit AND name=*etc/audit/auditd.conf* OR a1=*/etc/audisp/audispd.conf* OR a1=*/etc/rsyslog.conf*)
 | eval severity = "Medium" 
 | rename host as dvc
+
+
+kills an antivirus process, it's typically part of a broader defense evasion strategy to disable security mechanisms and execute malicious actions without detection
+T1562.006
