@@ -464,8 +464,34 @@ alert.id='account:logon-success' && user.dst =$[Logs/admin users] && device.ip =
 User Access to Compliance Systems Summary:
 alert.id='account:logon-success' && user.dst !=$[Logs/admin users] && device.ip =$[Compliance/Compliance Systems]
 
+
+PARIS
+
 Admin access on VSP machine:
 host.src = $[VSP_Machine] && user.dst = 'Admin_NDG'
+
+Authentication on account related to known exploit:
+user.dst contains 'firefart' || user.src contains 'firefart'
+
+CERT malicious IOCs in browsing for cybersquatting:
+(device.class = 'Web Browsing' || device.class = 'Web Logs') && category contains 'certblock'
+
+Malicious browsing  to C2:
+ioc.category = 'c2'  && ip.src != 10.51.116.91 
+
+Hacktool detected on machine:
+virusname contains "hacktool"
+
+ESET process killed by user
+reference.id = "4689" && result.code = "0x1" && process contains "eraagent", "ekrn", "eguiproxy"
+
+Connection from VSP user to non-VSP host
+host.src != $[VSP_Machine] && user.dst = $[VSP_Users] && device.type contains 'edr'
+
+CERT malicious IOCs in browsing for Tor
+(device.class = 'Web Browsing' || device.class = 'Web Logs') && alert.id ="tor" 
+
+
 
 
 
