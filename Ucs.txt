@@ -508,3 +508,10 @@ systemctl restart auditd
 
 defense evasion technique where attackers prevent security tools from detecting or logging their activities. They may disable logging, tamper with security software, or block communications between security tools and monitoring systems. This helps them avoid detection and maintain persistence.
 T1562.006
+
+
+(index=windows AND EventCode=4688 AND source="WinEventLog:Security" AND (Process_Command_Line="*update trace*" OR Process_Command_Line="*ETWEnabled*" OR Process_Command_Line="*Defender*" OR Process_Command_Line="*REG_DWORD /d 0*")) OR 
+(index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational") AND (ScriptBlockText=*ETWEnable* OR ScriptBlockText=*Defender* OR ScriptBlockText=*Value 0*) OR 
+(index=linux sourcetype=linux_audit AND name=*etc/audit/auditd.conf* OR a1=*/etc/audisp/audispd.conf* OR a1=*/etc/rsyslog.conf*)
+| eval severity = "Medium" 
+| rename host as dvc
