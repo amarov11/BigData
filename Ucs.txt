@@ -779,3 +779,4 @@ index=windows AND EventCode=4688 AND new_process_name IN ("rundll32.exe","mshta.
 | table dvc user new_process_name severity
 
 Living-Off-the-Land Binaries (LOLBins) are legitimate system utilities that attackers misuse for malicious purposes. This detection focuses on identifying scenarios where trusted applications, such as Microsoft Excel (excel.exe), are being used to launch suspicious child processes like Command Prompt (cmd.exe), PowerShell (powershell.exe), or other system binaries.
+Detection of LOLBins launched via an unsual way (ex excel.exe launching cmd.exe)
