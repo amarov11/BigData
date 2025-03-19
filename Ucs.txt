@@ -771,3 +771,9 @@ level: high
 tags:
   - attack.defense_evasion
   - attack.execution
+
+
+index=windows AND EventCode=4688 AND new_process_name IN ("rundll32.exe","mshta.exe", "certutil.exe", "regsvr32.exe", "installutil.exe", "wmic.exe"," bitsadmin.exe", "powershell.exe") 
+| eval severity = "Medium" 
+| rename dvc_nt_host AS dvc UserID AS user
+| table dvc user new_process_name severity
