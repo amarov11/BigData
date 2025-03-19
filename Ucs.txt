@@ -693,3 +693,8 @@ tags:
 
 
 Attackers abuse LOLBins (legitimate system utilities) via PowerShell to evade security controls. Common LOLBins used include rundll32.exe, mshta.exe, certutil.exe, and wmic.exe
+
+index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational" AND EventCode=4104 AND (ScriptBlockText=*rundll32.exe* OR ScriptBlockText=*mshta.exe* OR ScriptBlockText=*certutil.exe* OR ScriptBlockText=*regsvr32.exe* OR ScriptBlockText=*installutil.exe*) 
+| eval severity = "Medium" 
+| rename dvc_nt_host AS dvc UserID AS user
+| table dvc user ScriptBlockText severity
