@@ -580,3 +580,5 @@ index=windows AND source="WinEventLog:Security" AND EventCode="1102"
 | eval severity = "Low" 
 | rename dvc_nt_host AS dvc 
 | table dvc user severity
+
+schtasks /create /tn "SuspiciousTask" /tr "cmd.exe /c calc.exe" /sc minute /mo 1 /ru SYSTEM
