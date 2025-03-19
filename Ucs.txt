@@ -690,3 +690,6 @@ level: high
 tags:
   - attack.defense_evasion
   - attack.execution
+
+
+Attackers abuse LOLBins (legitimate system utilities) via PowerShell to evade security controls. Common LOLBins used include rundll32.exe, mshta.exe, certutil.exe, and wmic.exe
