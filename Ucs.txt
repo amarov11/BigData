@@ -584,3 +584,9 @@ index=windows AND source="WinEventLog:Security" AND EventCode="1102"
 schtasks /create /tn "SuspiciousTask" /tr "cmd.exe /c calc.exe" /sc minute /mo 1 /ru SYSTEM
 
 Attackers often use scheduled tasks or services for persistence, privilege escalation, or defense evasion. They can create a scheduled task or service to execute malicious payloads at system startup
+
+
+index=windows AND source="WinEventLog:Security" AND EventCode="4698" AND user!=*$
+| eval severity = "Low"
+| rename dvc_nt_host AS dvc 
+| table dvc user severity
