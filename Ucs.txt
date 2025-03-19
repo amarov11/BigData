@@ -575,3 +575,8 @@ index=windows AND source="WinEventLog:Security" AND EventCode IN (4656,4663,4660
 | table dvc user severity
 
 Clearing Windows audit logs is a common technique used by attackers to cover their tracks after gaining unauthorized access to a system. By deleting or clearing security logs, they attempt to remove evidence of their malicious activities, making forensic analysis and incident response more difficult.
+
+index=windows AND source="WinEventLog:Security" AND EventCode="1102"
+| eval severity = "Low" 
+| rename dvc_nt_host AS dvc 
+| table dvc user severity
